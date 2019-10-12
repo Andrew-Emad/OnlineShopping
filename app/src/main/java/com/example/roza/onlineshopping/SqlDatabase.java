@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.PopupMenu;
@@ -16,12 +17,14 @@ import java.util.HashMap;
 public class SqlDatabase extends SQLiteOpenHelper {
     private static String database="shopdatabase";
     SQLiteDatabase shopdatabase;
+    String x;
+
 
 
     public SqlDatabase (Context context)
     {
-        super(context,database,null,5);
-
+        super(context,database,null,9);
+        x="Trousers gded";
     }
 
     @Override
@@ -44,10 +47,15 @@ public class SqlDatabase extends SQLiteOpenHelper {
 
         value.put("catname","Food");
 
+
         db.insert("Categories",null,value);
 
         value.put("catname","Clothes");
         db.insert("Categories",null,value);
+
+        value.put("catname","Underwear");
+        db.insert("Categories",null,value);
+
         //mobiles
         db.execSQL("insert into Products (proname,price,quantity,catid) values('IphoneX',15000,10,1)");
         db.execSQL("insert into Products (proname,price,quantity,catid) values('Iphone6',8000,8,1)");
@@ -72,6 +80,8 @@ public class SqlDatabase extends SQLiteOpenHelper {
         db.execSQL("insert into Products (proname,price,quantity,catid) values('T-Shirt Zara',220,25,4)");
         db.execSQL("insert into Products (proname,price,quantity,catid) values('Jacket Blue',1800,15,4)");
         db.execSQL("insert into Products (proname,price,quantity,catid) values('Shoes Black',580,9,4)");
+
+        db.execSQL("insert into Products (proname,price,quantity,catid) values('"+x+"',120,2,2)");
 
 
     }
